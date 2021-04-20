@@ -1,4 +1,4 @@
-module github.com/ppenguin/gogenutils/v2
+module github.com/ppenguin/gogenutils
 
 go 1.16
 
