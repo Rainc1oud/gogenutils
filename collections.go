@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// FilterSlicePfxStr filters out all items of which another slice member is a prefix, recursively
+// FilterSlicePfxStr filters out all string items of which another slice member is a prefix, recursively
 // by convention take the first element as the "pivot"
 func FilterSlicePfxStr(s []string) []string {
 	if len(s) < 2 {

@@ -10,26 +10,26 @@ import (
 func TestInSlice(t *testing.T) {
 	lst := []string{"haha", "hihi", "hoho"}
 	s := "hihi"
-	assert.True(t, InSlice(s, lst), fmt.Sprintf("%s in %v", s, lst))
+	assert.True(t, InSlice(s, lst), fmt.Sprintf("assertion failed: %s in %v", s, lst))
 
 	lst = []string{"hahaha", "hihi", "hoho"}
 	s = "haha"
-	assert.False(t, InSlice(s, lst), fmt.Sprintf("%s in %v", s, lst))
+	assert.False(t, InSlice(s, lst), fmt.Sprintf("assertion failed: %s in %v", s, lst))
 
 	ilst := []int{12, 45, 76, 32}
 	i := 34
-	assert.False(t, InSlice(i, ilst), fmt.Sprintf("%d in %v", i, ilst))
+	assert.False(t, InSlice(i, ilst), fmt.Sprintf("assertion failed: %d in %v", i, ilst))
 
 	i = 45
-	assert.True(t, InSlice(i, ilst), fmt.Sprintf("%d in %v", i, ilst))
+	assert.True(t, InSlice(i, ilst), fmt.Sprintf("assertion failed: %d in %v", i, ilst))
 }
 
 func TestSlicesEqual(t *testing.T) {
 	a := []string{"haha", "hihi", "hoho"}
 	b := []string{"haha", "hihi", "hoho"}
-	assert.True(t, SlicesEqual(a, b), fmt.Sprintf("%v equals %v (element wise)", a, b))
+	assert.True(t, SlicesEqual(a, b), fmt.Sprintf("assertion failed: %v == %v (element wise)", a, b))
 	b = []string{"haha", "hiha", "hoho"}
-	assert.False(t, SlicesEqual(a, b), fmt.Sprintf("%v ! equals %v (element wise)", a, b))
+	assert.False(t, SlicesEqual(a, b), fmt.Sprintf("assertion failed: %v != %v (element wise)", a, b))
 }
 
 func TestFilterCommonRootDirs(t *testing.T) {
@@ -39,5 +39,5 @@ func TestFilterCommonRootDirs(t *testing.T) {
 	expected := []string{"/var", "/home/john", "/usr/lib"}
 	filtered := FilterCommonRootDirs(dirs())
 	cmpres := SlicesEqual(expected, filtered)
-	assert.True(t, cmpres, fmt.Sprintf("Filtered %v => %v ?= %v", dirs(), filtered, expected))
+	assert.True(t, cmpres, fmt.Sprintf("assertion failed: filtered %v => %v == %v", dirs(), filtered, expected))
 }
