@@ -67,6 +67,17 @@ func PosInSlice(item interface{}, slice interface{}) int {
 	return -1
 }
 
+func RemoveFromStringSlice(item string, slice []string) []string {
+	p := PosInSlice(item, slice)
+	if p < 0 { // item not found, return original
+		return slice
+	}
+	if p > -1 && p < len(slice)-2 { // item between (incl.) first and before-last pos
+		return append(slice[:p], slice[p+1:]...)
+	}
+	return slice[:p] // remaining possibility, item to remove is at the last position
+}
+
 // Equal tells whether a and b contain the same elements in the same order (!)
 // A nil argument is equivalent to an empty slice.
 func SlicesEqual(a, b interface{}) bool {
