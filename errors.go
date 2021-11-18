@@ -20,6 +20,18 @@ func (e *Errors) AddIf(err error) error {
 	return err
 }
 
+func (e *Errors) AddMsgf(format string, param ...interface{}) error {
+	err := fmt.Errorf(format, param...)
+	e.AddIf(err)
+	return err
+}
+
+func (e *Errors) AddMsgs(message ...string) {
+	for _, s := range message {
+		e.AddIf(fmt.Errorf(s))
+	}
+}
+
 func (e *Errors) Err() error {
 	if len(e.errs) < 1 {
 		return nil
