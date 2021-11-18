@@ -24,16 +24,23 @@ func (e *Errors) Err() error {
 	if len(e.errs) < 1 {
 		return nil
 	}
-	return fmt.Errorf(e.ErrText())
+	return fmt.Errorf(e.ErrString())
 }
 
-func (e *Errors) ErrText() string {
+func (e *Errors) ErrStrings() []string {
 	if len(e.errs) < 1 {
-		return ""
+		return []string{}
 	}
 	es := make([]string, len(e.errs))
 	for i, e := range e.errs {
 		es[i] = e.Error()
 	}
-	return strings.Join(es, "\n")
+	return es
+}
+
+func (e *Errors) ErrString() string {
+	if len(e.errs) < 1 {
+		return ""
+	}
+	return strings.Join(e.ErrStrings(), "\n")
 }
