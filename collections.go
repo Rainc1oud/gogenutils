@@ -72,7 +72,7 @@ func RemoveFromStringSlice(item string, slice []string) []string {
 	if p < 0 { // item not found, return original
 		return slice
 	}
-	if p > -1 && p < len(slice)-2 { // item between (incl.) first and before-last pos
+	if p > -1 && p < len(slice)-1 { // item between (incl.) first and before-last pos
 		return append(slice[:p], slice[p+1:]...)
 	}
 	return slice[:p] // remaining possibility, item to remove is at the last position
