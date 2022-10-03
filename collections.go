@@ -67,15 +67,19 @@ func PosInSlice(item interface{}, slice interface{}) int {
 	return -1
 }
 
+// RemoveFromStringSlice removes the itmen and
+// returns a new slice
 func RemoveFromStringSlice(item string, slice []string) []string {
-	p := PosInSlice(item, slice)
+	s := slice
+
+	p := PosInSlice(item, s)
 	if p < 0 { // item not found, return original
 		return slice
 	}
-	if p > -1 && p < len(slice)-1 { // item between (incl.) first and before-last pos
-		return append(slice[:p], slice[p+1:]...)
+	if p > -1 && p < len(s)-1 { // item between (incl.) first and before-last pos
+		return append(s[:p], s[p+1:]...)
 	}
-	return slice[:p] // remaining possibility, item to remove is at the last position
+	return s[:p] // remaining possibility, item to remove is at the last position
 }
 
 // Equal tells whether a and b contain the same elements in the same order (!)
