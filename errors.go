@@ -32,6 +32,13 @@ func (e *Errors) AddMsgs(message ...string) {
 	}
 }
 
+func (e *Errors) Append(errs *Errors) *Errors {
+	if len(errs.errs) > 0 {
+		e.errs = append(e.errs, errs.errs...)
+	}
+	return e
+}
+
 func (e *Errors) Err() error {
 	if len(e.errs) < 1 {
 		return nil
