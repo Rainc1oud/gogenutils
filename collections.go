@@ -108,3 +108,17 @@ func SlicesEqual(a, b interface{}) bool {
 	}
 	return true
 }
+
+func StringSliceUniq(sslice *[]string) *[]string {
+	elem := make(map[string]struct{})
+	result := []string{}
+
+	for _, str := range *sslice {
+		if _, ok := elem[str]; !ok {
+			elem[str] = struct{}{}
+			result = append(result, str)
+		}
+	}
+
+	return &result
+}

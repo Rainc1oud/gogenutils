@@ -145,3 +145,32 @@ func TestRemoveFromStringSlice(t *testing.T) {
 		})
 	}
 }
+
+func TestStringSliceUniq(t *testing.T) {
+	type args struct {
+		sslice *[]string
+	}
+	tests := []struct {
+		name string
+		args args
+		want *[]string
+	}{
+		{
+			name: "already unique",
+			args: args{sslice: &[]string{"apple", "orange", "banana", "plum"}},
+			want: &[]string{"apple", "orange", "banana", "plum"},
+		},
+		{
+			name: "has duplicates",
+			args: args{sslice: &[]string{"apple", "orange", "apple", "banana", "banana", "plum", "apple", "orange"}},
+			want: &[]string{"apple", "orange", "banana", "plum"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := StringSliceUniq(tt.args.sslice); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("StringSliceUniq() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
